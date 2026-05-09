@@ -1,0 +1,112 @@
+/* ===== GLOBAL ===== */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+
+    /* ✅ ADD BACKGROUND IMAGE */
+    background: url("..Images/bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* ✅ OVERLAY FOR DARK EFFECT */
+.overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    min-height: 100vh;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    background-color: #28a745;
+    padding: 10px;
+}
+
+.navbar-brand {
+    color: white !important;
+    font-weight: bold;
+}
+
+/* ===== PAGE CONTAINER ===== */
+.container {
+    margin-top: 20px;
+
+    /* ✅ GLASS EFFECT */
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* ===== CARD (PRODUCT UI) ===== */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
+.card img {
+    height: 150px;
+    object-fit: cover;
+}
+
+/* ===== BUTTON ===== */
+.btn-success {
+    width: 100%;
+    border-radius: 5px;
+}
+
+/* ===== FORM ===== */
+.form-control {
+    height: 40px;
+    border-radius: 5px;
+}
+
+/* ===== TABLE ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th {
+    background-color: #28a745;
+    color: white;
+}
+
+table th, table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+/* ===== ORDER TOTAL ===== */
+.product-grand-total {
+    font-weight: bold;
+    background-color: #e9ecef;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 30px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .card img {
+        height: 120px;
+    }
+
+    .navbar {
+        text-align: center;
+    }
+}
