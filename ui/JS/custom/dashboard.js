@@ -1,37 +1,60 @@
+var productListApiUrl = "http://127.0.0.1:5000/getProducts";
+var orderListApiUrl = "http://127.0.0.1:5000/getAllOrders";
+
 $(function () {
 
-    $.get(orderListApiUrl, function (response) {
+    // ================= TOTAL PRODUCTS =================
 
-        if(response && response.length > 0) {
+    $.get(productListApiUrl, function(products){
 
-            var table = '';
-            var totalCost = 0;
+        if(products){
 
-            $.each(response, function(index, order) {
-
-                var total = parseFloat(order.total);   // ✅ FIX
-
-                totalCost += total;
-
-                table += '<tr>' +
-                    '<td>'+ order.datetime +'</td>'+
-                    '<td>'+ order.order_id +'</td>'+
-                    '<td>'+ order.customer_name +'</td>'+
-                    '<td>'+ total.toFixed(2) +' Rs</td></tr>';
-            });
-
-            table += '<tr>' +
-                '<td colspan="3" style="text-align: end"><b>Total</b></td>' +
-                '<td><b>'+ totalCost.toFixed(2) +' Rs</b></td></tr>';
-
-            $("table tbody").html(table);
+            $("#totalProducts").html(products.length);
 
         } else {
-            $("table tbody").html("<tr><td colspan='4'>No Orders Found</td></tr>");
+
+            $("#totalProducts").html("0");
         }
 
-    }).fail(function(err) {
-        console.error("❌ API Error:", err);
+    });
+
+
+    // ================= TOTAL ORDERS & REVENUE =================
+
+    $.get(orderListApiUrl, function(orders){
+
+        console.log("Orders:", orders);
+
+        if(orders && orders.length > 0){
+
+            // TOTAL ORDERS
+            $("#totalOrders").html(orders.length);
+
+            // REVENUE
+            var revenue = 0;
+
+            $.each(orders, function(index, order){
+
+                revenue += Number(order.total);
+
+            });
+
+            $("#totalRevenue").html("₹ " + revenue.toFixed(2));
+
+        }
+
+        else{
+
+            $("#totalOrders").html("0");
+
+            $("#totalRevenue").html("₹ 0.00");
+        }
+
+    }).fail(function(error){
+
+        console.log(error);
+
+        $("#totalRevenue").html("₹ 0.00");
     });
 
 });

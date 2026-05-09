@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grocery Store</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- OVERLAY -->
+    <div class="overlay">
+
+        <!-- NAVBAR -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand" href="#">Grocery Store</a>
+
+            <div class="ml-auto">
+                <a href="index.html" class="btn btn-light btn-sm">Home</a>
+                <a href="manage-product.html" class="btn btn-light btn-sm">Products</a>
+                <a href="order.html" class="btn btn-light btn-sm">Orders</a>
+            </div>
+        </nav>
+
+        <!-- MAIN CONTAINER -->
+        <div class="container text-center mt-5">
+
+            <!-- TITLE -->
+            <h1 class="text-white mb-3">Welcome to Grocery Store</h1>
+
+            <p class="text-white mb-5">
+                Manage your products and orders easily
+            </p>
+
+            <!-- DASHBOARD CARDS -->
+            <div class="row text-center mb-5">
+
+                <!-- TOTAL PRODUCTS -->
+                <div class="col-md-4 mb-3">
+                    <div class="card bg-primary text-white p-4 shadow">
+                        <h2 id="totalProducts">0</h2>
+                        <p>Total Products</p>
+                    </div>
+                </div>
+
+                <!-- TOTAL ORDERS -->
+                <div class="col-md-4 mb-3">
+                    <div class="card bg-success text-white p-4 shadow">
+                        <h2 id="totalOrders">0</h2>
+                        <p>Total Orders</p>
+                    </div>
+                </div>
+
+                <!-- TOTAL REVENUE -->
+                <div class="col-md-4 mb-3">
+                    <div class="card bg-danger text-white p-4 shadow">
+                        <h2 id="totalRevenue">₹0</h2>
+                        <p>Total Revenue</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- BUTTONS -->
+            <a href="manage-product.html" class="btn btn-success btn-lg m-2">
+                Manage Products
+            </a>
+
+            <a href="order.html" class="btn btn-primary btn-lg m-2">
+                Create Order
+            </a>
+
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="mt-5">
+            <p>© 2026 Grocery Store | Developed by Rajat</p>
+        </footer>
+
+    </div>
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="JS/custom/dashboard.js"></script>
+
+</body>
+</html>

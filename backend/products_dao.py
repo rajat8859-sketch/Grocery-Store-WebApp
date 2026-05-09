@@ -23,7 +23,7 @@ def get_all_products(connection):
             "uom_name": uom_name
         })
 
-    cursor.close()   # ✅ FIX
+    cursor.close()   
 
     return response
 
@@ -46,7 +46,7 @@ def insert_new_product(connection, product):
     connection.commit()
 
     last_id = cursor.lastrowid
-    cursor.close()   # ✅ FIX
+    cursor.close()  
 
     return last_id
 
@@ -60,9 +60,42 @@ def delete_product(connection, product_id):
     cursor.execute(query, data)
     connection.commit()
 
-    cursor.close()   # ✅ FIX
+    cursor.close()   
 
-    return product_id   # ✅ FIX
+    return product_id  
+
+# ================= UPDATE PRODUCT =================
+
+def update_product(connection, product):
+
+    cursor = connection.cursor()
+
+    query = """
+    UPDATE product
+    SET name = %s,
+        uom_id = %s,
+        price_per_unit = %s
+    WHERE product_id = %s
+    """
+
+    data = (
+
+        product['product_name'],
+
+        product['uom_id'],
+
+        product['price_per_unit'],
+
+        product['product_id']
+    )
+
+    cursor.execute(query, data)
+
+    connection.commit()
+
+    cursor.close()
+
+    return product['product_id']
 
 
 if __name__ == "__main__":

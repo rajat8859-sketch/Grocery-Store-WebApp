@@ -1,101 +1,195 @@
-var productModal = $("#productModal");
+var productListApiUrl = "http://127.0.0.1:5000/getProducts";
+var productSaveApiUrl = "http://127.0.0.1:5000/insertProduct";
+var productDeleteApiUrl = "http://127.0.0.1:5000/deleteProduct";
+var productUpdateApiUrl = "http://127.0.0.1:5000/updateProduct";
+var uomListApiUrl = "http://127.0.0.1:5000/getUOM";
 
 $(function () {
 
-    $.get(productListApiUrl, function (response) {
-        if(response) {
-            var table = '';
+    loadProducts();
+    loadUOM();
 
-            $.each(response, function(index, product) {
+});
 
-                table += '<tr data-id="'+ product.product_id +'" data-name="'+ product.name +'">' +
-                    '<td>'+ product.name +'</td>'+
-                    '<td>'+ product.uom_name +'</td>'+
-                    '<td>'+ parseFloat(product.price_per_unit).toFixed(2) +'</td>'+
-                    '<td><span class="btn btn-xs btn-danger delete-product">Delete</span></td></tr>';
-            });
 
-            $("table tbody").html(table);
-        }
+/* ================= LOAD PRODUCTS ================= */
+
+function loadProducts(){
+
+    $.get(productListApiUrl, function(response){
+
+        var table = '';
+
+        $.each(response, function(index, product){
+
+            table += `
+                <tr>
+
+                    <td>${product.name}</td>
+
+                    <td>${product.uom_name}</td>
+
+                    <td>${product.price_per_unit}</td>
+
+                    <td>
+
+                        <button class="btn btn-sm btn-primary editProduct"
+
+                            data-id="${product.product_id}"
+                            data-name="${product.name}"
+                            data-uom="${product.uom_id}"
+                            data-price="${product.price_per_unit}">
+
+                            Edit
+
+                        </button>
+
+                        <button class="btn btn-sm btn-danger deleteProduct"
+
+                            data-id="${product.product_id}">
+
+                            Delete
+
+                        </button>
+
+                    </td>
+
+                </tr>
+            `;
+        });
+
+        $("#productTableBody").html(table);
+
+    });
+
+}
+
+
+/* ================= LOAD UOM ================= */
+
+function loadUOM(){
+
+    $.get(uomListApiUrl, function(response){
+
+        var options = '';
+
+        $.each(response, function(index, uom){
+
+            options += `
+                <option value="${uom.uom_id}">
+                    ${uom.uom_name}
+                </option>
+            `;
+        });
+
+        $("#uoms").html(options);
+
+    });
+
+}
+
+
+/* ================= SAVE PRODUCT ================= */
+
+$("#saveProduct").click(function(){
+
+    var productId = $("#product_id").val();
+
+    var requestData = {
+
+        product_name: $("#name").val(),
+
+        uom_id: $("#uoms").val(),
+
+        price_per_unit: $("#price").val()
+    };
+
+
+    /* ===== UPDATE ===== */
+
+    if(productId){
+
+        requestData.product_id = productId;
+
+        $.post(productUpdateApiUrl, requestData, function(response){
+
+            alert("Product Updated Successfully");
+
+            location.reload();
+
+        });
+
+    }
+
+    /* ===== INSERT ===== */
+
+    else{
+
+        $.post(productSaveApiUrl, requestData, function(response){
+
+            alert("Product Added Successfully");
+
+            location.reload();
+
+        });
+
+    }
+
+});
+
+
+/* ================= DELETE PRODUCT ================= */
+
+$(document).on("click", ".deleteProduct", function(){
+
+    var productId = $(this).data("id");
+
+    $.post(productDeleteApiUrl, {
+
+        product_id: productId
+
+    }, function(response){
+
+        alert("Product Deleted Successfully");
+
+        location.reload();
+
     });
 
 });
 
 
-// SAVE PRODUCT
-$("#saveProduct").on("click", function () {
+/* ================= EDIT PRODUCT ================= */
 
-    var data = $("#productForm").serializeArray();
+$(document).on("click", ".editProduct", function(){
 
-    var requestPayload = {
-        product_name: null,
-        uom_id: null,
-        price_per_unit: null
-    };
+    $("#product_id").val($(this).data("id"));
 
-    for (var i=0;i<data.length;++i) {
+    $("#name").val($(this).data("name"));
 
-        var element = data[i];
+    $("#uoms").val($(this).data("uom"));
 
-        switch(element.name) {
+    $("#price").val($(this).data("price"));
 
-            case 'product_name':
-                requestPayload.product_name = element.value;
-                break;
+    $("#productModal").modal("show");
 
-            case 'uom_id':
-                requestPayload.uom_id = element.value;
-                break;
-
-            case 'price_per_unit':
-                requestPayload.price_per_unit = element.value;
-                break;
-        }
-    }
-
-    callApi("POST", productSaveApiUrl, requestPayload);   // ✅ FIX
 });
 
 
-// DELETE PRODUCT
-$(document).on("click", ".delete-product", function (){
+/* ================= SEARCH ================= */
 
-    var tr = $(this).closest('tr');
+$("#searchProduct").on("keyup", function(){
 
-    var data = {
-        product_id : tr.data('id')
-    };
+    var value = $(this).val().toLowerCase();
 
-    if (confirm("Are you sure to delete "+ tr.data('name') +" item?")) {
-        callApi("POST", productDeleteApiUrl, data);
-    }
-});
+    $("#productTableBody tr").filter(function(){
 
+        $(this).toggle(
 
-// RESET MODAL
-productModal.on('hide.bs.modal', function(){
+            $(this).text().toLowerCase().indexOf(value) > -1
 
-    $("#id").val('0');
-    $("#name, #uoms, #price").val('');   // ✅ FIX
+        );
 
-    productModal.find('.modal-title').text('Add New Product');
-});
-
-
-// LOAD UOM
-productModal.on('show.bs.modal', function(){
-
-    $.get(uomListApiUrl, function (response) {
-
-        if(response) {
-
-            var options = '<option value="">--Select--</option>';
-
-            $.each(response, function(index, uom) {
-                options += '<option value="'+ uom.uom_id +'">'+ uom.uom_name +'</option>';
-            });
-
-            $("#uoms").html(options);
-        }
     });
+
 });
