@@ -1,120 +1,250 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>New Order</title>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <title>New Order - Grocery Store</title>
 
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
-    <!-- ✅ YOUR CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Custom CSS -->                
+    <link rel="stylesheet" href="CSS/style.css">
+
 </head>
 
 <body>
 
-<!-- ✅ OVERLAY -->
-<div class="overlay">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
 
-    <!-- ✅ NAVBAR -->
-    <nav class="navbar navbar-dark">
-        <a class="navbar-brand" href="index.html">Grocery Store</a>
+        <a class="navbar-brand" href="#">
+            Grocery Store
+        </a>
 
         <div class="ml-auto">
-            <a href="index.html" class="btn btn-light btn-sm">Home</a>
-            <a href="manage-product.html" class="btn btn-light btn-sm">Products</a>
+
+            <a href="index.html" class="btn btn-light btn-sm">
+                Home
+            </a>
+
+            <a href="manage-product.html" class="btn btn-light btn-sm">
+                Products
+            </a>
+
         </div>
+
     </nav>
 
-    <div class="container mt-4">
 
-        <!-- HEADER -->
-        <div class="d-flex justify-content-between mb-4">
-            <h2>New Order</h2>
-            <a href="index.html" class="btn btn-secondary">Back</a>
-        </div>
+    <!-- Main Container -->
+    <div class="container mt-5">
 
-        <!-- CUSTOMER NAME -->
-        <div class="form-group">
-            <input type="text" name="customerName" id="customerName"
-                   class="form-control" placeholder="Enter Customer Name" required>
-        </div>
+        <div class="card shadow-lg border-0">
 
-        <!-- TABLE HEADER -->
-        <div class="row font-weight-bold mb-2">
-            <div class="col-md-4">Product</div>
-            <div class="col-md-3">Price</div>
-            <div class="col-md-2">Quantity</div>
-            <div class="col-md-3">
-                Total
-                <button type="button" class="btn btn-sm btn-primary float-right" id="addMoreButton">
-                    <i class="fa fa-plus"></i> Add
-                </button>
+            <div class="card-body">
+
+                <!-- Header -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+
+                    <h2 class="font-weight-bold">
+                        New Order
+                    </h2>
+
+                    <a href="index.html"
+                       class="btn btn-secondary">
+                        Back
+                    </a>
+
+                </div>
+
+
+                <!-- Customer Name -->
+                <div class="form-group">
+
+                    <input type="text"
+                           class="form-control"
+                           name="customerName"
+                           placeholder="Enter Customer Name">
+
+                </div>
+
+
+                <!-- Table Heading -->
+                <div class="row font-weight-bold mb-2 text-center">
+
+                    <div class="col-md-4">
+                        Product
+                    </div>
+
+                    <div class="col-md-2">
+                        Price
+                    </div>
+
+                    <div class="col-md-2">
+                        Quantity
+                    </div>
+
+                    <div class="col-md-2">
+                        Total
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <button type="button"
+                                class="btn btn-primary btn-sm"
+                                id="addMoreButton">
+
+                            <i class="fa fa-plus"></i> Add
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Product Rows -->
+                <div class="product-box-extra">
+
+
+                    <!-- First Row -->
+                    <div class="row product-item mb-3 text-center">
+
+                        <!-- Product -->
+                        <div class="col-md-4">
+
+                            <select class="form-control cart-product"
+                                    name="product">
+
+                                <option value="">
+                                    Select Product
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- Price -->
+                        <div class="col-md-2">
+
+                            <input type="text"
+                                   class="form-control product-price"
+                                   id="product_price"
+                                   readonly>
+
+                        </div>
+
+
+                        <!-- Quantity -->
+                        <div class="col-md-2">
+
+                            <input type="number"
+                                   class="form-control product-qty"
+                                   name="qty"
+                                   value="1">
+
+                        </div>
+
+
+                        <!-- Total -->
+                        <div class="col-md-2">
+
+                            <input type="text"
+                                   class="form-control item-total"
+                                   name="item_total"
+                                   readonly>
+
+                        </div>
+
+
+                        <!-- Remove -->
+                        <div class="col-md-2">
+
+                            <button type="button"
+                                    class="btn btn-danger remove-row">
+
+                                Remove
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Grand Total -->
+                <div class="row mt-4">
+
+                    <div class="col-md-8"></div>
+
+                    <div class="col-md-2">
+
+                        <h4>Total</h4>
+
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <input type="text"
+                               id="product_grand_total"
+                               name="product_grand_total"
+                               class="form-control"
+                               value="0.00"
+                               readonly>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Save Button -->
+                <div class="row mt-4">
+
+                    <div class="col-md-8"></div>
+
+                    <div class="col-md-4">
+
+                        <button type="button"
+                                class="btn btn-success btn-block"
+                                id="saveOrder">
+
+                            <i class="fa fa-save"></i>
+                            Save Order
+
+                        </button>
+
+                    </div>
+
+                </div>
+
             </div>
-        </div>
 
-        <!-- ITEMS -->
-        <div id="itemsInOrder"></div>
-
-        <!-- TOTAL -->
-        <div class="row mt-4">
-            <div class="col-md-9 text-right">
-                <h5>Total</h5>
-            </div>
-            <div class="col-md-3">
-                <input id="product_grand_total" name="product_grand_total"
-                       class="form-control" value="0.0" readonly>
-
-                <button class="btn btn-success mt-2 w-100" id="saveOrder">
-                    <i class="fa fa-save"></i> Save Order
-                </button>
-            </div>
         </div>
 
     </div>
 
-</div>
 
-<!-- ✅ TEMPLATE ROW -->
-<div id="productTemplate" style="display:none;">
-    <div class="row product-item mb-3">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-        <div class="col-md-4">
-            <select name="product" class="form-control cart-product"></select>
-        </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
-        <div class="col-md-3">
-            <!-- ⚠️ IMPORTANT: ID must match JS -->
-            <input id="product_price" class="form-control" readonly>
-        </div>
-
-        <div class="col-md-2">
-            <input name="qty" type="number" min="1" value="1"
-                   class="form-control product-qty">
-        </div>
-
-        <div class="col-md-3">
-            <div class="d-flex">
-                <!-- ⚠️ IMPORTANT: ID must match JS -->
-                <input name="item_total" id="item_total" class="form-control" readonly>
-                <button type="button" class="btn btn-danger ml-2 remove-row">X</button>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<!-- JS -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
-<script src="js/custom/common.js"></script>
-<script src="js/custom/order.js"></script>
+    <!-- Custom JS -->
+    <script src="JS/custom/common.js"></script>
+    <script src="JS/custom/order.js"></script>
 
 </body>
 </html>
