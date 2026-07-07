@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Products</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="overlay">
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-dark">
+
+        <a class="navbar-brand" href="index.html">
+            Grocery Store
+        </a>
+
+        <div class="ml-auto">
+
+            <a href="index.html"
+               class="btn btn-light btn-sm">
+
+                Home
+
+            </a>
+
+            <a href="order.html"
+               class="btn btn-light btn-sm">
+
+                Orders
+
+            </a>
+
+            <a href="admin-profile.html"
+class="btn btn-light btn-sm">
+Admin Profile
+</a>
+
+        </div>
+
+    </nav>
+
+    <!-- MAIN -->
+    <div class="container mt-4">
+
+        <!-- HEADER -->
+        <div class="d-flex justify-content-between mb-4">
+
+            <h2>Manage Products</h2>
+
+            <button class="btn btn-success"
+                    data-toggle="modal"
+                    data-target="#productModal">
+
+                <i class="fa fa-plus"></i>
+                Add Product
+
+            </button>
+
+        </div>
+
+        <!-- SEARCH -->
+        <input type="text"
+               id="searchProduct"
+               class="form-control mb-3"
+               placeholder="Search Product...">
+
+        <!-- TABLE -->
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-hover bg-white">
+
+                <thead class="thead-dark">
+
+                    <tr>
+                        <th>Name</th>
+                        <th>Unit</th>
+                        <th>Price</th>
+                        <th width="220">Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="productTableBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal fade" id="productModal">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+                    Add / Update Product
+                </h5>
+
+                <button class="close"
+                        data-dismiss="modal">
+
+                    &times;
+
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <form id="productForm">
+
+                    <!-- HIDDEN ID -->
+                    <input type="hidden"
+                           id="product_id">
+
+                    <!-- NAME -->
+                    <div class="form-group">
+
+                        <label>Product Name</label>
+
+                        <input type="text"
+                               id="name"
+                               class="form-control"
+                               required>
+
+                    </div>
+
+                    <!-- UOM -->
+                    <div class="form-group">
+
+                        <label>Unit</label>
+
+                        <select id="uoms"
+                                class="form-control"
+                                required>
+
+                        </select>
+
+                    </div>
+
+                    <!-- PRICE -->
+                    <div class="form-group">
+
+                        <label>Price</label>
+
+                        <input type="number"
+                               id="price"
+                               class="form-control"
+                               required>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button class="btn btn-secondary"
+                        data-dismiss="modal">
+
+                    Close
+
+                </button>
+
+                <button class="btn btn-primary"
+                        id="saveProduct">
+
+                    <i class="fa fa-save"></i>
+                    Save Product
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- JS -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="JS/custom/common.js"></script>
+
+<script src="JS/custom/manage-product.js"></script>
+
+</body>
+</html>

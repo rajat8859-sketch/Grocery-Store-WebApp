@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+
+        <h1 class="mb-4">Dashboard</h1>
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="card dashboard-card bg-primary text-white">
+                    <div class="card-body text-center">
+                        <h2 id="totalProducts">0</h2>
+                        <p>Total Products</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card dashboard-card bg-success text-white">
+                    <div class="card-body text-center">
+                        <h2 id="totalOrders">0</h2>
+                        <p>Total Orders</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card dashboard-card bg-danger text-white">
+                    <div class="card-body text-center">
+                        <h2 id="totalRevenue">₹0</h2>
+                        <p>Total Revenue</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- RECENT ORDERS -->
+        <div class="card mt-5 shadow">
+
+            <div class="card-header bg-dark text-white">
+                Recent Orders
+            </div>
+
+            <div class="card-body">
+
+                <table class="table table-bordered">
+
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Total</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="ordersTable"></tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="JS/custom/common.js"></script>
+<script src="JS/custom/dashboard.js"></script>
+
+</body>
+</html>

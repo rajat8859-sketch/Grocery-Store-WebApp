@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Profile</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        body{
+            background: url('images/bg.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .profile-card{
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 60px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+
+        .profile-img{
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #28a745;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <div class="profile-card text-center">
+
+                <img src="Images/admin.png" class="profile-img mb-3">
+
+                <h2>Rajat Rana</h2>
+
+                <p class="text-muted">Administrator</p>
+
+                <hr>
+
+                <div class="text-left">
+
+                    <h5>Name</h5>
+                    <p>Rajat Rana</p>
+
+                    <h5>Email</h5>
+                    <p>rajat8859@gmail.com</p>
+
+                    <h5>Phone</h5>
+                    <p>+91 7409736698</p>
+
+                </div>
+
+                <button class="btn btn-primary btn-block mt-3">
+                    Change Password
+                </button>
+
+                <button class="btn btn-danger btn-block">
+                    Logout
+                </button>
+
+                <a href="index.html"
+                class="btn btn-success btn-block">
+                    Back to Dashboard
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

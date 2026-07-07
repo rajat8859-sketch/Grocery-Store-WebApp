@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Invoice Bill</title>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <style>
+
+        body{
+            background:#f4f4f4;
+        }
+
+        .invoice-box{
+
+            background:white;
+
+            padding:40px;
+
+            margin-top:40px;
+
+            border-radius:10px;
+
+            box-shadow:0 0 10px rgba(0,0,0,0.2);
+        }
+
+        .invoice-title{
+            text-align:center;
+            margin-bottom:30px;
+        }
+
+        @media print{
+
+            .no-print{
+                display:none;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="invoice-box">
+
+        <!-- HEADER -->
+        <div class="invoice-title">
+
+            <h1>Grocery Store</h1>
+
+            <h4>Invoice Bill</h4>
+
+        </div>
+
+
+        <!-- CUSTOMER -->
+        <div class="row mb-4">
+
+            <div class="col-md-6">
+
+                <h5>Customer Name:</h5>
+
+                <p id="billCustomer"></p>
+
+            </div>
+
+            <div class="col-md-6 text-right">
+
+                <h5>Date:</h5>
+
+                <p id="billDate"></p>
+
+            </div>
+
+        </div>
+
+
+        <!-- TABLE -->
+        <table class="table table-bordered">
+
+            <thead class="thead-dark">
+
+                <tr>
+
+                    <th>Product</th>
+
+                    <th>Price</th>
+
+                    <th>Quantity</th>
+
+                    <th>Total</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="billTable">
+
+            </tbody>
+
+        </table>
+
+
+        <!-- GRAND TOTAL -->
+        <div class="text-right mt-4">
+
+            <h3>
+                Grand Total:
+                ₹ <span id="grandTotal"></span>
+            </h3>
+
+        </div>
+
+
+        <!-- BUTTONS -->
+        <div class="text-center mt-4 no-print">
+
+            <button class="btn btn-primary"
+                    onclick="window.print()">
+
+                Print Bill
+
+            </button>
+
+            <a href="index.html"
+               class="btn btn-success">
+
+                Back Dashboard
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+var billData = JSON.parse(
+    localStorage.getItem("billData")
+);
+
+if(billData){
+
+    // CUSTOMER NAME
+    document.getElementById("billCustomer").innerHTML =
+        billData.customer_name;
+
+    // DATE & TIME
+    document.getElementById("billDate").innerHTML =
+        new Date().toLocaleString();
+
+    var rows = "";
+
+    var grandTotal = 0;
+
+    // LOOP PRODUCTS
+    billData.order_details.forEach(function(item){
+
+        grandTotal += parseFloat(item.total_price);
+
+        rows += `
+            <tr>
+
+                <td>${item.product_name}</td>
+
+                <td>₹ ${item.price}</td>
+
+                <td>${item.quantity}</td>
+
+                <td>₹ ${item.total_price}</td>
+
+            </tr>
+        `;
+    });
+
+    // SHOW TABLE
+    document.getElementById("billTable").innerHTML = rows;
+
+    // SHOW GRAND TOTAL
+    document.getElementById("grandTotal").innerHTML =
+        grandTotal.toFixed(2);
+}
+
+</script>
+
+</body>
+</html>

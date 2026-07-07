@@ -1,0 +1,150 @@
+/* ===== BODY ===== */
+
+body {
+
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Segoe UI', sans-serif;
+
+    background: url("../Images/bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+.overlay {
+
+    flex: 1;
+
+}
+footer {
+
+    text-align: center;
+    padding: 10px;
+}
+
+/* ===== NAVBAR ===== */
+
+.navbar {
+
+    padding: 12px 20px;
+}
+
+/* ===== CONTAINER ===== */
+
+.container {
+
+    margin-top: 40px;
+}
+
+/* ===== CARD ===== */
+
+.card {
+
+    background: rgba(255,255,255,0.92);
+
+    border-radius: 12px;
+
+    border: none;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* ===== PRODUCT ROW ===== */
+
+.product-item {
+
+    align-items: center;
+}
+
+/* ===== REMOVE BUTTON ===== */
+
+.remove-row {
+
+    width: 100%;
+}
+
+/* ===== BUTTONS ===== */
+
+.btn-success {
+
+    min-width: 180px;
+}
+
+/* ===== TABLE ===== */
+
+table {
+
+    background: white;
+}
+
+table th {
+
+    background: #343a40;
+    color: white;
+}
+
+/* ===== INPUT ===== */
+
+.form-control {
+
+    border-radius: 5px;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+
+    .product-item {
+
+        margin-bottom: 15px;
+    }
+
+    .remove-row {
+
+        margin-top: 10px;
+    }
+
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    background: rgba(0,0,0,0.8);
+    padding-top: 30px;
+}
+
+.sidebar .logo {
+    color: white;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 15px 20px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background: #28a745;
+}
+
+.main-content {
+    margin-left: 260px;
+    padding: 30px;
+}
+
+.dashboard-card {
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
